@@ -41,6 +41,7 @@ nav .links a:hover{color:var(--green)}
 .btn.alt{background:transparent;color:var(--green);border:2px solid var(--green)}
 .phone{position:relative;width:230px;aspect-ratio:9/19.5;border:9px solid #1b1b1d;border-radius:38px;background:var(--card);overflow:hidden;margin:0 auto;box-shadow:0 18px 40px rgba(0,0,0,.18)}
 .phone::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:70px;height:18px;background:#1b1b1d;border-radius:12px;z-index:2}
+.phone video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .phone .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:.85rem;color:var(--muted);background:repeating-linear-gradient(45deg,transparent 0 12px,color-mix(in srgb,var(--green) 7%,transparent) 12px 24px)}
 .hero .phone{width:260px}
@@ -135,7 +136,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-si
         <div><h3>Split your way</h3><p>Split equally, or choose who's in.</p></div>
       </article>
       <article class="card feature">
-        <div class="phone"><img src="assets/shots/check-items.png" alt="Check items screen with summary card" onerror="this.remove()"><div class="ph">check-items.png</div></div>
+        <div class="phone"><video src="assets/shots/split_by_item.mp4#t=0.1" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording: splitting a receipt by items"></video></div>
         <div><h3>Scan a receipt</h3><p>Take a receipt photo. The app reads it on your phone. Tap who had each item. Service charge and GST are shared in proportion to what each person had.</p></div>
       </article>
       <article class="card feature">
