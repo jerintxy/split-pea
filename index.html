@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SplitPea – Split bills, easy peasy</title>
+<meta name="description" content="SplitPea is an iOS bill-splitting app for trips abroad, built as a project during an iOS software engineering traineeship.">
+<link rel="icon" href="assets/pea.png">
+<style>
+:root{--green:#2F7A3E;--orange:#C2540A;--bg:#F7F9F0;--text:#1B2A1E;--card:#fff;--line:#dfe6d3;--muted:#4b5d4f}
+@media (prefers-color-scheme:dark){:root{--green:#5FB36E;--orange:#FF9A57;--bg:#0F1A12;--text:#EAF2E6;--card:#17261b;--line:#243829;--muted:#a9bba9}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:18px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text)}
+img{max-width:100%}
+a{color:var(--green)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h1,h2,h3{line-height:1.2;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,7vw,4rem)}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);color:var(--green)}
+h3{font-size:1.15rem}
+p{margin:0 0 1em}
+.muted{color:var(--muted)}
+.accent{color:var(--orange)}
+nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;color:var(--text)}
+nav .brand img{width:32px;height:32px;border-radius:8px}
+nav .links{display:flex;gap:18px;font-size:.95rem}
+nav .links a{text-decoration:none;color:var(--text)}
+nav .links a:hover{color:var(--green)}
+@media(max-width:640px){nav .links a:not(.keep){display:none}}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media(max-width:800px){.hero .wrap{grid-template-columns:1fr;text-align:center}.hero .pea{margin:0 auto}.hero .cta{justify-content:center}}
+.hero .pea{width:96px;height:96px;border-radius:22px;margin-bottom:16px;box-shadow:0 8px 24px rgba(47,122,62,.25)}
+.hero p.lead{font-size:1.25rem;color:var(--muted)}
+.badge{display:inline-block;background:color-mix(in srgb,var(--orange) 14%,transparent);color:var(--orange);border-radius:999px;padding:4px 14px;font-size:.9rem;font-weight:600}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:600;text-decoration:none;background:var(--green);color:#fff}
+.btn.alt{background:transparent;color:var(--green);border:2px solid var(--green)}
+.phone{position:relative;width:230px;aspect-ratio:9/19.5;border:9px solid #1b1b1d;border-radius:38px;background:var(--card);overflow:hidden;margin:0 auto;box-shadow:0 18px 40px rgba(0,0,0,.18)}
+.phone::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:70px;height:18px;background:#1b1b1d;border-radius:12px;z-index:2}
+.phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.phone .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;font-size:.85rem;color:var(--muted);background:repeating-linear-gradient(45deg,transparent 0 12px,color-mix(in srgb,var(--green) 7%,transparent) 12px 24px)}
+.hero .phone{width:260px}
+.grid{display:grid;gap:22px}
+.features{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px}
+.feature{display:flex;gap:20px;align-items:center}
+.feature .phone{width:130px;flex:none;border-width:6px;border-radius:24px}
+.feature .phone::before{width:40px;height:10px;top:5px}
+.feature .phone .ph{font-size:.65rem;padding:8px}
+.feature h3{color:var(--green)}
+.feature p{margin:0;font-size:.98rem}
+@media(max-width:420px){.feature{flex-direction:column;text-align:center}}
+.steps{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));counter-reset:s}
+.step{counter-increment:s}
+.step::before{content:counter(s);display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;font-weight:700;margin-bottom:14px}
+.pair{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.pair figure{margin:0;text-align:center;font-size:.85rem;color:var(--muted)}
+.pair figcaption{margin-top:8px}
+.tech{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.tech ul{margin:0;padding-left:1.1em}
+.tech li{margin-bottom:.4em}
+.diagram{margin-top:28px;overflow-x:auto}
+.viper{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;min-width:0}
+.viper .box{background:color-mix(in srgb,var(--green) 12%,var(--card));border:2px solid var(--green);border-radius:16px;padding:12px 16px;text-align:center;min-width:120px}
+.viper .box b{display:block;color:var(--green)}
+.viper .box span{font-size:.8rem;color:var(--muted)}
+.viper .box.o{border-color:var(--orange);background:color-mix(in srgb,var(--orange) 10%,var(--card))}
+.viper .box.o b{color:var(--orange)}
+.viper .arrow{font-size:1.4rem;color:var(--muted)}
+.viper .col{display:flex;flex-direction:column;gap:10px}
+.next ul{margin:0;padding-left:1.2em}
+footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-size:.95rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/pea.png" alt="Pea, the SplitPea mascot"> SplitPea</a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#tech">Under the hood</a>
+      <a class="keep" href="https://github.com/jerintxy/split-pea-app">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <img class="pea" src="assets/pea.png" alt="Pea, the SplitPea mascot">
+      <h1>SplitPea</h1>
+      <p class="lead"><strong class="accent">Split bills, easy peasy.</strong><br>
+        An iOS app for splitting bills with friends, even when you all pay in different currencies.</p>
+      <span class="badge">Built as a project · Not on the App Store yet</span>
+      <div class="cta">
+        <a class="btn" href="#features">See the features</a>
+        <a class="btn alt" href="https://github.com/jerintxy/split-pea-app">View the code</a>
+      </div>
+    </div>
+    <div class="phone">
+      <img src="assets/shots/home.png" alt="SplitPea home screen" onerror="this.remove()">
+      <div class="ph">Screenshot:<br>Home<br>(assets/shots/home.png)</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The problem</h2>
+    <p style="font-size:1.2rem;max-width:720px">Trips abroad make splitting bills messy. One person pays in yen. Another pays in cash. Everyone used a different rate. Someone has to do the maths later.</p>
+    <p class="muted" style="max-width:720px">SplitPea keeps every expense, every rate and every payment in one place, and tells you who pays whom.</p>
+  </div>
+</section>
+
+<section id="features" style="background:color-mix(in srgb,var(--green) 6%,transparent)">
+  <div class="wrap">
+    <h2>Features</h2>
+    <div class="grid features">
+      <article class="card feature">
+        <div class="phone"><img src="assets/shots/groups.png" alt="Groups screen" onerror="this.remove()"><div class="ph">groups.png</div></div>
+        <div><h3>Groups for any trip</h3><p>Make a group for a trip abroad (like Japan in ¥) or an everyday group in S$ only.</p></div>
+      </article>
+      <article class="card feature">
+        <div class="phone"><img src="assets/shots/new-expense.png" alt="New expense screen with the ≈ S$ line" onerror="this.remove()"><div class="ph">new-expense.png</div></div>
+        <div><h3>Live or your own rate</h3><p>Add expenses in the trip currency. See the ≈ S$ amount using today's rate, or use your own cash rate. Each expense keeps its rate, so later changes never touch past expenses.</p></div>
+      </article>
+      <article class="card feature">
+        <div class="phone"><img src="assets/shots/split.png" alt="Split options" onerror="this.remove()"><div class="ph">split.png</div></div>
+        <div><h3>Split your way</h3><p>Split equally, or choose who's in.</p></div>
+      </article>
+      <article class="card feature">
+        <div class="phone"><img src="assets/shots/check-items.png" alt="Check items screen with summary card" onerror="this.remove()"><div class="ph">check-items.png</div></div>
+        <div><h3>Scan a receipt</h3><p>Take a receipt photo. The app reads it on your phone. Tap who had each item. Service charge and GST are shared in proportion to what each person had.</p></div>
+      </article>
+      <article class="card feature">
+        <div class="phone"><img src="assets/shots/balances.png" alt="Balances screen" onerror="this.remove()"><div class="ph">balances.png</div></div>
+        <div><h3>Clear balances</h3><p>Balances show in one main currency (S$), with suggested payments. They are person to person by default. Turn on "Simplify payments" to use fewer payments and see how it got there.</p></div>
+      </article>
+      <article class="card feature">
+        <div class="phone"><img src="assets/shots/settle.png" alt="Record payment screen" onerror="this.remove()"><div class="ph">settle.png</div></div>
+        <div><h3>Record payments</h3><p>Record a payment in S$ or ¥ cash, converted at the receiver's rate. Made a mistake? Tap Undo.</p></div>
+      </article>
+    </div>
+
+    <h3 style="text-align:center;margin-top:56px">Light and dark mode</h3>
+    <p class="muted" style="text-align:center">Green is the main colour. Orange is the accent.</p>
+    <div class="pair">
+      <figure>
+        <div class="phone"><img src="assets/shots/balances.png" alt="Balances in light mode" onerror="this.remove()"><div class="ph">balances.png<br>(light)</div></div>
+        <figcaption>Light</figcaption>
+      </figure>
+      <figure>
+        <div class="phone"><img src="assets/shots/balances-dark.png" alt="Balances in dark mode" onerror="this.remove()"><div class="ph">balances-dark.png<br>(dark)</div></div>
+        <figcaption>Dark</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="grid steps">
+      <div class="card step"><h3>Create a group</h3><p>Pick the people and the currency. Japan in ¥? Dinner with friends in S$? Both work.</p></div>
+      <div class="card step"><h3>Add expenses or scan a receipt</h3><p>Type an amount, or snap the receipt and tap who had what.</p></div>
+      <div class="card step"><h3>Settle up</h3><p>See who pays whom. Record the payment when it happens.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tech" style="background:color-mix(in srgb,var(--green) 6%,transparent)">
+  <div class="wrap">
+    <h2>Under the hood</h2>
+    <p class="muted" style="max-width:720px">I designed 31 screens in light and dark mode before writing code. Then I built them in Swift.</p>
+    <div class="grid tech">
+      <div class="card">
+        <h3>Built with</h3>
+        <ul>
+          <li>Swift and UIKit</li>
+          <li>Programmatic UI (no storyboards)</li>
+          <li>VIPER architecture</li>
+          <li>iOS 18 and up</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Apple frameworks</h3>
+        <ul>
+          <li><b>Vision:</b> reads receipt text on the device. Photos are not uploaded.</li>
+          <li><b>PhotosUI:</b> the photo picker. The app never sees your whole photo library.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Web API</h3>
+        <ul>
+          <li><b>Frankfurter:</b> daily exchange rates from the European Central Bank.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Money, done carefully</h3>
+        <ul>
+          <li>Money is stored as whole cents to avoid rounding errors.</li>
+          <li>Leftover cents go to the payer.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card diagram">
+      <h3>VIPER, in one picture</h3>
+      <p class="muted">Each screen is split into small parts. Each part does one job.</p>
+      <div class="viper" role="img" aria-label="VIPER diagram: View talks to Presenter, Presenter talks to Interactor and Router, Interactor uses Entities">
+        <div class="box"><b>View</b><span>Shows the screen</span></div>
+        <div class="arrow">⇄</div>
+        <div class="box o"><b>Presenter</b><span>Decides what to show</span></div>
+        <div class="arrow">⇄</div>
+        <div class="col">
+          <div class="box"><b>Interactor</b><span>Logic and data</span></div>
+          <div class="box"><b>Router</b><span>Moves to other screens</span></div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="box"><b>Entity</b><span>Simple models</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="next">
+  <div class="wrap">
+    <h2>What's next</h2>
+    <div class="card">
+      <ul>
+        <li>Join a group by link.</li>
+        <li>Receipts in other languages, with translation.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/pea.png" alt="" width="40" height="40" style="border-radius:10px"><br>
+    SplitPea was built as a project during my iOS software engineering traineeship.<br>
+    It is not on the App Store yet.<br>
+    By [Your Name] · <a href="https://github.com/jerintxy/split-pea-app">GitHub</a> · <a href="[your LinkedIn URL]">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>
