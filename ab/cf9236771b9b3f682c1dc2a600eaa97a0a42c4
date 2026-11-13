@@ -1,0 +1,19 @@
+index.html
+  s_b5c596b2f6142d::t_ad90284d66b77f 49-58,108,112,116,120,124,128,178-184
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "abcf9236771b9b3f682c1dc2a600eaa97a0a42c4",
+  "prompts": {},
+  "sessions": {
+    "s_b5c596b2f6142d": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "378d1e17-eac0-4031-9c54-4fe1f69e6e9c",
+        "model": "openrouter/OpenRouter/anthropic/claude-sonnet-5.5"
+      },
+      "human_author": "jerintxy <tanxinyijerin@gmail.com>"
+    }
+  }
+}
