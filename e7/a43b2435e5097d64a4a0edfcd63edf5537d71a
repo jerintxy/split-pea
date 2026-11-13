@@ -1,0 +1,19 @@
+index.html
+  s_8ebcb7aebad2ac::t_46f6bca11a056f 108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e7a43b2435e5097d64a4a0edfcd63edf5537d71a",
+  "prompts": {},
+  "sessions": {
+    "s_8ebcb7aebad2ac": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "s_8ebcb7aebad2ac",
+        "model": "unknown"
+      },
+      "human_author": "jerintxy <tanxinyijerin@gmail.com>"
+    }
+  }
+}
