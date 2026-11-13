@@ -1,0 +1,19 @@
+index.html
+  s_b5c596b2f6142d::t_ff9a5f57a24dd8 180
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "2883fb727163b6e30da81a53c59d814ae539e13a",
+  "prompts": {},
+  "sessions": {
+    "s_b5c596b2f6142d": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "378d1e17-eac0-4031-9c54-4fe1f69e6e9c",
+        "model": "unknown"
+      },
+      "human_author": "jerintxy <tanxinyijerin@gmail.com>"
+    }
+  }
+}
