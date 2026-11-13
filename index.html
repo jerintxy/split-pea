@@ -60,18 +60,6 @@ nav .links a:hover{color:var(--green)}
 .pair{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:32px}
 .pair figure{margin:0;text-align:center;font-size:.85rem;color:var(--muted)}
 .pair figcaption{margin-top:8px}
-.tech{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.tech ul{margin:0;padding-left:1.1em}
-.tech li{margin-bottom:.4em}
-.diagram{margin-top:28px;overflow-x:auto}
-.viper{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;min-width:0}
-.viper .box{background:color-mix(in srgb,var(--green) 12%,var(--card));border:2px solid var(--green);border-radius:16px;padding:12px 16px;text-align:center;min-width:120px}
-.viper .box b{display:block;color:var(--green)}
-.viper .box span{font-size:.8rem;color:var(--muted)}
-.viper .box.o{border-color:var(--orange);background:color-mix(in srgb,var(--orange) 10%,var(--card))}
-.viper .box.o b{color:var(--orange)}
-.viper .arrow{font-size:1.4rem;color:var(--muted)}
-.viper .col{display:flex;flex-direction:column;gap:10px}
 .next ul{margin:0;padding-left:1.2em}
 footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-size:.95rem;color:var(--muted)}
 </style>
@@ -84,7 +72,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-si
     <div class="links">
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
-      <a href="#tech">Under the hood</a>
       <a class="keep" href="https://github.com/jerintxy/split-pea-app">GitHub</a>
     </div>
   </div>
@@ -174,61 +161,6 @@ footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-si
   </div>
 </section>
 
-<section id="tech" style="background:color-mix(in srgb,var(--green) 6%,transparent)">
-  <div class="wrap">
-    <h2>Under the hood</h2>
-    <p class="muted" style="max-width:720px">I designed 31 screens in light and dark mode before writing code. Then I built them in Swift.</p>
-    <div class="grid tech">
-      <div class="card">
-        <h3>Built with</h3>
-        <ul>
-          <li>Swift and UIKit</li>
-          <li>Programmatic UI (no storyboards)</li>
-          <li>VIPER architecture</li>
-          <li>iOS 18 and up</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Apple frameworks</h3>
-        <ul>
-          <li><b>Vision:</b> reads receipt text on the device. Photos are not uploaded.</li>
-          <li><b>PhotosUI:</b> the photo picker. The app never sees your whole photo library.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Web API</h3>
-        <ul>
-          <li><b>Frankfurter:</b> daily exchange rates from the European Central Bank.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Money, done carefully</h3>
-        <ul>
-          <li>Money is stored as whole cents to avoid rounding errors.</li>
-          <li>Leftover cents go to the payer.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card diagram">
-      <h3>VIPER, in one picture</h3>
-      <p class="muted">Each screen is split into small parts. Each part does one job.</p>
-      <div class="viper" role="img" aria-label="VIPER diagram: View talks to Presenter, Presenter talks to Interactor and Router, Interactor uses Entities">
-        <div class="box"><b>View</b><span>Shows the screen</span></div>
-        <div class="arrow">⇄</div>
-        <div class="box o"><b>Presenter</b><span>Decides what to show</span></div>
-        <div class="arrow">⇄</div>
-        <div class="col">
-          <div class="box"><b>Interactor</b><span>Logic and data</span></div>
-          <div class="box"><b>Router</b><span>Moves to other screens</span></div>
-        </div>
-        <div class="arrow">→</div>
-        <div class="box"><b>Entity</b><span>Simple models</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="next">
   <div class="wrap">
     <h2>What's next</h2>
@@ -245,8 +177,7 @@ footer{border-top:1px solid var(--line);padding:32px 0;text-align:center;font-si
   <div class="wrap">
     <img src="assets/pea.png" alt="" width="40" height="40" style="border-radius:10px"><br>
     SplitPea was built as a project during my iOS software engineering traineeship.<br>
-    It is not on the App Store yet.<br>
-    By [Your Name] · <a href="https://github.com/jerintxy/split-pea-app">GitHub</a> · <a href="[your LinkedIn URL]">LinkedIn</a>
+    It is not on the App Store yet.
   </div>
 </footer>
 
